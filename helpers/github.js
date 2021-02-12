@@ -11,10 +11,14 @@ let getReposByUsername = (user) => {
     }
   };
 
-  axios.get(options.url, options)
-    .then(repo => console.log('repo', repo))
-    .catch(error => console.log('this is the error!!!', error))
-    .then(() => console.log('done'))
+  return axios.get(options.url, options)
+    .then(response => response.data)
+    // .then(response => {
+    //   return response.data;
+
+    // })
+    // .catch(error => console.log('this is the error!!!', error))
+    // .then(() => console.log('done'))
 
 }
 
