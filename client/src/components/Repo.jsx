@@ -4,10 +4,10 @@ const Repo = (props) => {
 
   return (
   <tr>
-      <td style={{ textAlignVertical: "center", textAlign: "center" }}>{props.id}</td>
-      <td style={{ textAlignVertical: "center", textAlign: "center" }}>{props.name}</td>
-      <td style={{ textAlignVertical: "center", textAlign: "center" }}>{props.size}</td>
-      <td style={{ textAlignVertical: "center", textAlign: "center" }}>{props.owner.url}</td>
+    <td>{props.id}</td>
+      <td><a href={props.url}>{props.name}</a></td>
+    <td>{props.size}</td>
+    <td>{props.owner.url}</td>
   </tr>
   )
 }

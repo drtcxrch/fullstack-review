@@ -12,7 +12,8 @@ let repoSchema = mongoose.Schema({
   owner: {
     url: {type: String, required: true}
   },
-  size: { type: Number, required: true }
+  size: { type: Number, required: true },
+  html_url: {type: String, required: true}
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
