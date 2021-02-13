@@ -24,17 +24,27 @@ class App extends React.Component {
       url: "/repos",
       data: term,
       dataType: 'text',
-      success: (response, textStatus, jqXHR) => alert("Posted!"),
+      success: (response, textStatus, jqXHR) => console.log("Posted!"),
       error: (jqXHR, textStatus, errorThrown) => alert(textStatus, errorThrown)
     })
 
   }
 
+  componentDidMount() {
+    $.ajax({
+      method: "GET",
+      url: "/repos",
+      success: (response, textStatus, jqXHR) => this.setState({repos: response}),
+      error: (jqXHR, textStatus, errorThrown) => alert(textStatus, errorThrown)
+    })
+  }
+
   render () {
-    return (<div>
-      <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+
+    return (<div style={{ textAlignVertical: "center", textAlign: "center", }}>
+      <h1 >Github Fetcher</h1>
       <Search onSearch={this.search.bind(this)}/>
+      <RepoList repos={this.state.repos} />
     </div>)
   }
 }
