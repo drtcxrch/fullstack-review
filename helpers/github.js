@@ -13,13 +13,6 @@ let getReposByUsername = (user) => {
 
   return axios.get(options.url, options)
     .then(response => response.data)
-    // .then(response => {
-    //   return response.data;
-
-    // })
-    // .catch(error => console.log('this is the error!!!', error))
-    // .then(() => console.log('done'))
-
 }
 
 module.exports.getReposByUsername = getReposByUsername;

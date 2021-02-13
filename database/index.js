@@ -18,7 +18,6 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (data) => {
-  // console.log('data!!!', data);
   let newRepo = new Repo(data);
   console.log('*****This is a new repo!!!', newRepo);
   newRepo.save((err, newRepo) => {
@@ -28,9 +27,8 @@ let save = (data) => {
       console.log('Repo saved!')
     }
   })
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+
 }
 
 module.exports.save = save;
+module.exports.Repo = Repo;
