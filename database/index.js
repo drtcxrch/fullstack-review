@@ -20,13 +20,11 @@ let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (data) => {
   let newRepo = new Repo(data);
-  console.log('*****This is a new repo!!!', newRepo);
   newRepo.save((err, newRepo) => {
     if (err) {
       return console.error(err);
-    } else {
-      console.log('Repo saved!')
     }
+    console.log('Record saved:', newRepo._id);
   })
 
 }

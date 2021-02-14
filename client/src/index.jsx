@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
-
+    this.getRepos = this.getRepos.bind(this);
   }
 
   search (term) {
@@ -24,26 +24,31 @@ class App extends React.Component {
       url: "/repos",
       data: term,
       dataType: 'text',
-      success: (response, textStatus, jqXHR) => console.log("Posted!"),
+      success: (response, textStatus, jqXHR) => this.getRepos(),
       error: (jqXHR, textStatus, errorThrown) => alert(textStatus, errorThrown)
     })
 
   }
 
-  componentDidMount() {
+  getRepos() {
+    console.log('called!!')
     $.ajax({
       method: "GET",
       url: "/repos",
-      success: (response, textStatus, jqXHR) => this.setState({repos: response}),
+      success: (response, textStatus, jqXHR) => this.setState({ repos: response }),
       error: (jqXHR, textStatus, errorThrown) => alert(textStatus, errorThrown)
     })
+  }
+
+  componentDidMount() {
+    this.getRepos();
   }
 
   render () {
 
     return (<div style={{ textAlignVertical: "center", textAlign: "center", }}>
       <h1 >Github Fetcher</h1>
-      <Search onSearch={this.search.bind(this)}/>
+      <Search onSearch={this.search.bind(this)} />
       <RepoList repos={this.state.repos} />
     </div>)
   }

@@ -7,7 +7,7 @@ const db = require('../database/index');
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.post('/repos', function (req, res) {
-
+  console.log('POST /repos start', req)
   var githubUser = req.headers.username;
   // console.log('User***', githubUser)
  helpers.getReposByUsername(githubUser)
@@ -19,19 +19,23 @@ app.post('/repos', function (req, res) {
         db.save(repos[repo]);
       }
     }
+    console.log('POST /repos send');
+    res.send('user' + req.headers.username);
   })
   .catch(err => console.log(err));
 
-  res.send(console.log('userData received'));
+
 });
 
 app.get('/repos', function (req, res) {
+    console.log('GET /repos start');
   db.Repo.find({})
     .limit(25)
     .sort({size:-1})
     .then((results) => {
+      console.log('GET /repos send', results.length);
       res.send(results);
-      console.log(results);
+
     })
 });
 
